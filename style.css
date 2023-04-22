@@ -30,6 +30,7 @@ h2 {
 .days {
     background-color:rgb(35, 49, 64);
     color: aliceblue;
+    margin-top: 3em;
 }
 
 #search-city {
@@ -63,4 +64,10 @@ h2 {
 #current-data {
     margin-top: 1.5em;
     border: solid 1px black;
+}
+
+@media screen and (max-width = 768px) {
+    .days {
+        margin-top: 3em;
+    }
 }
