@@ -8,7 +8,7 @@
     rel="stylesheet" 
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" 
     crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Forecast</title>
 </head>
 <body>
@@ -40,13 +40,13 @@
         <div class="container" id="current-data">
         <section class="row" id="city-name-date">
             <h3 class="col-12 col-md-4 col-lg-4" id="current-city">Philadelphia</h3>
-            <p class="col-12 col-md-4 col-lg-4" id="current-day">(MM/DD/YYYY)</p>
-            <img class="col-12 col-md-4 col-lg-4" />
+            <p class="col-12 col-md-4 col-lg-4" id="current-date">(MM/DD/YYYY)</p>
+            <img class="col-12 col-md-4 col-lg-4" id="today-icon" src=''/>
         </section>
         <section id="current-city-data">
-            <p clas="temp">Temp: <span class="current-temp">0</span>°F</p>
-            <p class="wind">Wind: <span clas="current-wind">0</span>MPH</p>
-            <p class="humid">Humidity: <span class="current-humid">0</span>%</p>
+            <p>Temp: <span id="current-temp">0</span>°F</p>
+            <p>Wind: <span id="current-wind">0</span>MPH</p>
+            <p>Humidity: <span id="current-humid">0</span>%</p>
         </section>
         </div>
 
@@ -54,39 +54,39 @@
             <section class="row row-col-1 row-col-sm-1 row-col-md-2" style="justify-content: space-between;">
                 <h4 style="margin-top: 2em;">5-Day Forecast: </h4>
                 <section class="col-12 col-md-5 col-lg-2 days">
-                    <p id="day-1">(MM/DD/YYYY)</p>
-                    <img/>
-                    <p>Temp: <span class="future-temp">0</span>°F</p>
-                    <p>Wind: <span clas="future-wind">0</span>MPH</p>
-                    <p>Humidity: <span class="future-humid"></span>%</p>
+                    <p id="day-one">(MM/DD/YYYY)</p>
+                    <img id="first-day-icon" src=""/>
+                    <p>Temp: <span id="first-day-temp">0</span>°F</p>
+                    <p>Wind: <span id="first-day-wind">0</span>MPH</p>
+                    <p>Humidity: <span id="first-day-humid"></span>%</p>
                 </section>
                 <section class="col-12 col-md-5 col-lg-2 days">
-                    <p id="day-2">(MM/DD/YYYY)</p>
-                    <img/>
-                    <p>Temp: <span class="future-temp">0</span>°F</p>
-                    <p>Wind: <span clas="future-wind">0</span>MPH</p>
-                    <p>Humidity: <span class="future-humid"></span>%</p>
+                    <p id="day-two">(MM/DD/YYYY)</p>
+                    <img id="second-day-icon" src=""/>
+                    <p>Temp: <span id="second-day-temp">0</span>°F</p>
+                    <p>Wind: <span id="second-day-wind">0</span>MPH</p>
+                    <p>Humidity: <span id="second-day-humid"></span>%</p>
                 </section>
                 <section class="col-12 col-md-5 col-lg-2 days">
-                    <p id="day-3">(MM/DD/YYYY)</p>
-                    <img/>
-                    <p>Temp: <span class="future-temp">0</span>°F</p>
-                    <p>Wind: <span clas="future-wind">0</span>MPH</p>
-                    <p>Humidity: <span class="future-humid"></span>%</p>
+                    <p id="day-three">(MM/DD/YYYY)</p>
+                    <img id="third-day-icon" src=""/>
+                    <p>Temp: <span id="third-day-temp">0</span>°F</p>
+                    <p>Wind: <span id="third-day-wind">0</span>MPH</p>
+                    <p>Humidity: <span id="third-day-humid"></span>%</p>
                 </section>
                 <section class="col-12 col-md-5 col-lg-2 days">
-                    <p id="day-4">(MM/DD/YYYY)</p>
-                    <img/>
-                    <p>Temp: <span class="future-temp">0</span>°F</p>
-                    <p>Wind: <span clas="future-wind">0</span>MPH</p>
-                    <p>Humidity: <span class="future-humid">0</span>%</p>
+                    <p id="day-four">(MM/DD/YYYY)</p>
+                    <img id="fourth-day-icon" src=""/>
+                    <p>Temp: <span id="fourth-day-temp">0</span>°F</p>
+                    <p>Wind: <span id="fourth-day-wind">0</span>MPH</p>
+                    <p>Humidity: <span id="fourth-day-humid">0</span>%</p>
                 </section>
                 <section class="col-12 col-lg-2 days">
-                    <p id="day-5">(MM/DD/YYYY)</p>
-                    <img/>
-                    <p>Temp: <span class="future-temp">0</span>°F</p>
-                    <p>Wind: <span clas="future-wind">0</span>MPH</p>
-                    <p>Humidity: <span class="future-humid">0</span>%</p>
+                    <p id="day-fifth">(MM/DD/YYYY)</p>
+                    <img id="fifth-day-icon" src=""/>
+                    <p>Temp: <span id="fifth-day-temp">0</span>°F</p>
+                    <p>Wind: <span id="fifth-day-wind">0</span>MPH</p>
+                    <p>Humidity: <span id="fifth-day-humid">0</span>%</p>
                 </section>
             </section>
         </section>
@@ -95,9 +95,19 @@
     </div>
 
 </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.4.js"
+    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"></script>  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" 
     crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
