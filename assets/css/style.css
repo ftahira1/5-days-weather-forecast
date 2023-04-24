@@ -57,13 +57,17 @@ h2 {
 }
 
 #city-name-date {
-    align-items: baseline;
     font-size: 1.7em;
+    align-items: center;
 }
 
 #current-data {
     margin-top: 1.5em;
     border: solid 1px black;
+}
+
+#today-icon {
+    width: 13%;
 }
 
 @media screen and (max-width = 768px) {

@@ -57,22 +57,27 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=4493
     currentTemp.textContent = `${data.list[0].main.temp}`
     currentWind.textContent = `${data.list[0].wind.speed}`
     currentHumid.textContent = `${data.list[0].main.humidity}`
-    firstDayTemp.textContent = `${data.list[8].main.temp}`
-    firstDayWind.textContent = `${data.list[8].wind.speed}`
-    firstDayHumid.textContent = `${data.list[8].main.humidity}`
-    secondDayTemp.textContent = `${data.list[16].main.temp}`
-    secondDayWind.textContent = `${data.list[16].wind.speed}`
-    secondDayHumid.textContent = `${data.list[16].main.humidity}`
-    thirdDayTemp.textContent = `${data.list[24].main.temp}`
-    thirdDayWind.textContent = `${data.list[24].wind.speed}`
-    thirdDayHumid.textContent = `${data.list[24].main.humidity}`
-    fourthDayTemp.textContent = `${data.list[32].main.temp}`
-    fourthDayWind.textContent = `${data.list[32].wind.speed}`
-    fourthDayHumid.textContent = `${data.list[32].main.humidity}`
-    fifthDayTemp.textContent = `${data.list[39].main.temp}`
-    fifthDayWind.textContent = `${data.list[39].wind.speed}`
-    fifthDayHumid.textContent = `${data.list[39].main.humidity}`
+    firstDayTemp.textContent = `${data.list[4].main.temp}`
+    firstDayWind.textContent = `${data.list[4].wind.speed}`
+    firstDayHumid.textContent = `${data.list[4].main.humidity}`
+    secondDayTemp.textContent = `${data.list[12].main.temp}`
+    secondDayWind.textContent = `${data.list[12].wind.speed}`
+    secondDayHumid.textContent = `${data.list[12].main.humidity}`
+    thirdDayTemp.textContent = `${data.list[20].main.temp}`
+    thirdDayWind.textContent = `${data.list[20].wind.speed}`
+    thirdDayHumid.textContent = `${data.list[20].main.humidity}`
+    fourthDayTemp.textContent = `${data.list[28].main.temp}`
+    fourthDayWind.textContent = `${data.list[28].wind.speed}`
+    fourthDayHumid.textContent = `${data.list[28].main.humidity}`
+    fifthDayTemp.textContent = `${data.list[36].main.temp}`
+    fifthDayWind.textContent = `${data.list[36].wind.speed}`
+    fifthDayHumid.textContent = `${data.list[36].main.humidity}`
     todayIcon.src = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`
+    firstDayIcon.src = `https://openweathermap.org/img/wn/${data.list[8].weather[0].icon}.png`
+    secondDayIcon.src = `https://openweathermap.org/img/wn/${data.list[16].weather[0].icon}.png`
+    thirdDayIcon.src = `https://openweathermap.org/img/wn/${data.list[24].weather[0].icon}.png`
+    fourthDayIcon.src = `https://openweathermap.org/img/wn/${data.list[32].weather[0].icon}.png`
+    fifthDayIcon.src = `https://openweathermap.org/img/wn/${data.list[39].weather[0].icon}.png`
 }
 )};
 
