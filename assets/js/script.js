@@ -40,6 +40,39 @@ var dayFifth = dayFour.add(1,'day');
 $('#day-fifth').text(dayFifth.format("M/D/YYYY"));
 
 
+fetch("https://api.openweathermap.org/data/2.5/forecast?q=philadelphia&appid=44937540199d83cda6cdba6424273fb3&units=imperial")
+  .then(function (answer) {
+    console.log(answer)
+    return answer.json();
+  })
+  .then(function (data) {
+    console.log(data)
+    currentTemp.textContent = `${data.list[0].main.temp}`
+    currentWind.textContent = `${data.list[0].wind.speed}`
+    currentHumid.textContent = `${data.list[0].main.humidity}`
+    firstDayTemp.textContent = `${data.list[4].main.temp}`
+    firstDayWind.textContent = `${data.list[4].wind.speed}`
+    firstDayHumid.textContent = `${data.list[4].main.humidity}`
+    secondDayTemp.textContent = `${data.list[12].main.temp}`
+    secondDayWind.textContent = `${data.list[12].wind.speed}`
+    secondDayHumid.textContent = `${data.list[12].main.humidity}`
+    thirdDayTemp.textContent = `${data.list[20].main.temp}`
+    thirdDayWind.textContent = `${data.list[20].wind.speed}`
+    thirdDayHumid.textContent = `${data.list[20].main.humidity}`
+    fourthDayTemp.textContent = `${data.list[28].main.temp}`
+    fourthDayWind.textContent = `${data.list[28].wind.speed}`
+    fourthDayHumid.textContent = `${data.list[28].main.humidity}`
+    fifthDayTemp.textContent = `${data.list[36].main.temp}`
+    fifthDayWind.textContent = `${data.list[36].wind.speed}`
+    fifthDayHumid.textContent = `${data.list[36].main.humidity}`
+    todayIcon.src = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`
+    firstDayIcon.src = `https://openweathermap.org/img/wn/${data.list[8].weather[0].icon}.png`
+    secondDayIcon.src = `https://openweathermap.org/img/wn/${data.list[16].weather[0].icon}.png`
+    thirdDayIcon.src = `https://openweathermap.org/img/wn/${data.list[24].weather[0].icon}.png`
+    fourthDayIcon.src = `https://openweathermap.org/img/wn/${data.list[32].weather[0].icon}.png`
+    fifthDayIcon.src = `https://openweathermap.org/img/wn/${data.list[39].weather[0].icon}.png`
+  });
+
 
 
 
