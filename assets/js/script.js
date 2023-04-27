@@ -1,3 +1,4 @@
+// List of all variables using id.
 var searchBtn = document.querySelector("#search");
 var currentCity = document.querySelector("#current-city");
 var searchCity = document.querySelector("#city-search")
@@ -27,6 +28,7 @@ var secondDayIcon = document.querySelector("#second-day-icon");
 var thirdDayIcon = document.querySelector("#third-day-icon");
 var fourthDayIcon = document.querySelector("#fourth-day-icon");
 var fifthDayIcon = document.querySelector("#fifth-day-icon");
+//Using dayjs to desiplay the dates.
 var currentDate = dayjs();
 $('#current-date').text(currentDate.format("M/D/YYYY"));
 var dayOne = currentDate.add(1,'day');
@@ -40,15 +42,16 @@ $('#day-four').text(dayFour.format("M/D/YYYY"));
 var dayFifth = dayFour.add(1,'day');
 $('#day-fifth').text(dayFifth.format("M/D/YYYY"));
 
+//Clear button function.
 clearData.addEventListener("click", function () {
   localStorage.clear();
   location.reload();
 });
 
+//Initial function
 function init() {
   var cityList = [];
   cityList = JSON.parse(localStorage.getItem("searchedCities"));
-  console.log(cityList);
 if(cityList !== null) {
   for(var i = 0; i < cityList.length; i++) {
     var listEl = document.createElement("button");
@@ -62,27 +65,23 @@ if(cityList !== null) {
 }
 };
 
+//Function when we click previous searched cities and we display data on the website
 function searchHistoryBtn () {
-  console.log("test");
-  // for(var i = 0; i < listEl.length; i++) {
-  //   var cityName = listEl[0].textContent;
-  //   console.log(cityName)
-  // }
-  // var cityName = listEl.textContent;
 console.log(this.textContent);
 var cityName = (this.textContent);
-// (this).textContent
+//Fetching info from openweather api.
 fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=44937540199d83cda6cdba6424273fb3&units=imperial`)
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
-    // console.log(data)
+    //Updating the info about the current day.
     currentCity.textContent = cityName
     currentTemp.textContent = `${data.list[0].main.temp}`
     currentWind.textContent = `${data.list[0].wind.speed}`
     currentHumid.textContent = `${data.list[0].main.humidity}`
     firstDayTemp.textContent = `${data.list[6].main.temp}`
+    //Updating the info about the 5-days forecast.
     firstDayWind.textContent = `${data.list[6].wind.speed}`
     firstDayHumid.textContent = `${data.list[6].main.humidity}`
     secondDayTemp.textContent = `${data.list[14].main.temp}`
@@ -97,6 +96,7 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=4493
     fifthDayTemp.textContent = `${data.list[38].main.temp}`
     fifthDayWind.textContent = `${data.list[38].wind.speed}`
     fifthDayHumid.textContent = `${data.list[38].main.humidity}`
+    //Updating the weather icons from the api.
     todayIcon.src = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`
     firstDayIcon.src = `https://openweathermap.org/img/wn/${data.list[6].weather[0].icon}.png`
     secondDayIcon.src = `https://openweathermap.org/img/wn/${data.list[14].weather[0].icon}.png`
@@ -106,16 +106,18 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=4493
 })
 }
 
+
+//Fetching data from the api about our default city in the website.
 fetch("https://api.openweathermap.org/data/2.5/forecast?q=philadelphia&appid=44937540199d83cda6cdba6424273fb3&units=imperial")
   .then(function (answer) {
-    // console.log(answer)
     return answer.json(); 
   })
   .then(function (data) {
-    // console.log(data)
+    //Updating the info about the current day.
     currentTemp.textContent = `${data.list[0].main.temp}`
     currentWind.textContent = `${data.list[0].wind.speed}`
     currentHumid.textContent = `${data.list[0].main.humidity}`
+    //Updating the info about the 5-days forecast.
     firstDayTemp.textContent = `${data.list[6].main.temp}`
     firstDayWind.textContent = `${data.list[6].wind.speed}`
     firstDayHumid.textContent = `${data.list[6].main.humidity}`
@@ -131,6 +133,7 @@ fetch("https://api.openweathermap.org/data/2.5/forecast?q=philadelphia&appid=449
     fifthDayTemp.textContent = `${data.list[38].main.temp}`
     fifthDayWind.textContent = `${data.list[38].wind.speed}`
     fifthDayHumid.textContent = `${data.list[38].main.humidity}`
+    //Updating the weather icons from the api.
     todayIcon.src = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`
     firstDayIcon.src = `https://openweathermap.org/img/wn/${data.list[6].weather[0].icon}.png`
     secondDayIcon.src = `https://openweathermap.org/img/wn/${data.list[22].weather[0].icon}.png`
@@ -142,7 +145,7 @@ fetch("https://api.openweathermap.org/data/2.5/forecast?q=philadelphia&appid=449
 
 
 
-
+//Function when we click search button and we get info about the city that we searched.
 function getWeather() {
 var nameCity = searchCity.value;
 console.log(nameCity)
@@ -152,10 +155,12 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${nameCity}&appid=4493
     return response.json();
   })
   .then(function (data) {
+    //Updating the info about the current day.
     currentCity.textContent = nameCity
     currentTemp.textContent = `${data.list[0].main.temp}`
     currentWind.textContent = `${data.list[0].wind.speed}`
     currentHumid.textContent = `${data.list[0].main.humidity}`
+    //Updating the info about the 5-days forecast.
     firstDayTemp.textContent = `${data.list[6].main.temp}`
     firstDayWind.textContent = `${data.list[6].wind.speed}`
     firstDayHumid.textContent = `${data.list[6].main.humidity}`
@@ -171,6 +176,7 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${nameCity}&appid=4493
     fifthDayTemp.textContent = `${data.list[38].main.temp}`
     fifthDayWind.textContent = `${data.list[38].wind.speed}`
     fifthDayHumid.textContent = `${data.list[38].main.humidity}`
+    //Updating the weather icons from the api.
     todayIcon.src = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`
     firstDayIcon.src = `https://openweathermap.org/img/wn/${data.list[6].weather[0].icon}.png`
     secondDayIcon.src = `https://openweathermap.org/img/wn/${data.list[14].weather[0].icon}.png`
@@ -178,22 +184,23 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${nameCity}&appid=4493
     fourthDayIcon.src = `https://openweathermap.org/img/wn/${data.list[30].weather[0].icon}.png`
     fifthDayIcon.src = `https://openweathermap.org/img/wn/${data.list[38].weather[0].icon}.png`
 })
+//Saving thhe cities that we searched into local storage.
 var citiesList = JSON.parse(localStorage.getItem("searchedCities")) || [];
 citiesList.push(searchCity.value);
 localStorage.setItem("searchedCities",JSON.stringify(citiesList));
-
+//Displaying the cities in the local storage into the website.
 for(var i = 0; i < citiesList.length; i++) {
   var citiesList = [];
   citiesList.push(searchCity.value);
+  //Creating buttons with our past searched cities.
   var list = document.createElement("button");
   list.textContent = citiesList[i];
+  //Setting attributes to those buttons.
   list.setAttribute("class", "col-12 col-md-8");
   list.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%")
+  //Appending these buttons into the section.
   searchData.append(list);
 }
-  
-
-// location.reload();
 };
 
 
