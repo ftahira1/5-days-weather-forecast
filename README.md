@@ -14,7 +14,7 @@ This is how my page looks:
 
 Click here for deployed page: <a href="https://ftahira1.github.io/5-days-weather-forecast/">Weather forecast Scheduler</a>
 
-Click here for my Github repository: <a href="git@github.com:ftahira1/5-days-weather-forecast.git">Github</a>
+Click here for my Github repository: <a href="https://github.com/ftahira1/5-days-weather-forecast.git">Github</a>
 
 
 ## Credits
