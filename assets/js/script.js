@@ -1,7 +1,8 @@
 var searchBtn = document.querySelector("#search");
 var currentCity = document.querySelector("#current-city");
 var searchCity = document.querySelector("#city-search")
-var pastCity = document.querySelector("#past-city");
+var searchData = document.querySelector("#search-data");
+var clearData = document.querySelector("#clear");
 var currentTemp = document.querySelector("#current-temp");
 var currentWind = document.querySelector("#current-wind");
 var currentHumid = document.querySelector("#current-humid");
@@ -39,14 +40,68 @@ $('#day-four').text(dayFour.format("M/D/YYYY"));
 var dayFifth = dayFour.add(1,'day');
 $('#day-fifth').text(dayFifth.format("M/D/YYYY"));
 
+clearData.addEventListener("click", function () {
+  localStorage.clear();
+  location.reload();
+});
+
+function init() {
+  var cityList = [];
+  cityList = JSON.parse(localStorage.getItem("searchedCities"));
+  console.log(cityList);
+if(cityList !== null) {
+  for(var i = 0; i < cityList.length; i++) {
+    var listEl = document.createElement("button");
+    listEl.textContent = cityList[i];
+    searchData.append(listEl);
+    listEl.addEventListener("click", searchHistoryBtn);
+  }
+  
+}
+};
+
+function searchHistoryBtn () {
+  
+console.log(this.textContent);
+var cityName = (this.textContent);
+fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=44937540199d83cda6cdba6424273fb3&units=imperial`)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    currentCity.textContent = cityName
+    currentTemp.textContent = `${data.list[0].main.temp}`
+    currentWind.textContent = `${data.list[0].wind.speed}`
+    currentHumid.textContent = `${data.list[0].main.humidity}`
+    firstDayTemp.textContent = `${data.list[6].main.temp}`
+    firstDayWind.textContent = `${data.list[6].wind.speed}`
+    firstDayHumid.textContent = `${data.list[6].main.humidity}`
+    secondDayTemp.textContent = `${data.list[14].main.temp}`
+    secondDayWind.textContent = `${data.list[14].wind.speed}`
+    secondDayHumid.textContent = `${data.list[14].main.humidity}`
+    thirdDayTemp.textContent = `${data.list[22].main.temp}`
+    thirdDayWind.textContent = `${data.list[22].wind.speed}`
+    thirdDayHumid.textContent = `${data.list[22].main.humidity}`
+    fourthDayTemp.textContent = `${data.list[30].main.temp}`
+    fourthDayWind.textContent = `${data.list[30].wind.speed}`
+    fourthDayHumid.textContent = `${data.list[30].main.humidity}`
+    fifthDayTemp.textContent = `${data.list[38].main.temp}`
+    fifthDayWind.textContent = `${data.list[38].wind.speed}`
+    fifthDayHumid.textContent = `${data.list[38].main.humidity}`
+    todayIcon.src = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`
+    firstDayIcon.src = `https://openweathermap.org/img/wn/${data.list[6].weather[0].icon}.png`
+    secondDayIcon.src = `https://openweathermap.org/img/wn/${data.list[14].weather[0].icon}.png`
+    thirdDayIcon.src = `https://openweathermap.org/img/wn/${data.list[22].weather[0].icon}.png`
+    fourthDayIcon.src = `https://openweathermap.org/img/wn/${data.list[30].weather[0].icon}.png`
+    fifthDayIcon.src = `https://openweathermap.org/img/wn/${data.list[38].weather[0].icon}.png`
+})
+}
 
 fetch("https://api.openweathermap.org/data/2.5/forecast?q=philadelphia&appid=44937540199d83cda6cdba6424273fb3&units=imperial")
   .then(function (answer) {
-    // console.log(answer)
-    return answer.json();
+    return answer.json(); 
   })
   .then(function (data) {
-    // console.log(data)
     currentTemp.textContent = `${data.list[0].main.temp}`
     currentWind.textContent = `${data.list[0].wind.speed}`
     currentHumid.textContent = `${data.list[0].main.humidity}`
@@ -78,16 +133,14 @@ fetch("https://api.openweathermap.org/data/2.5/forecast?q=philadelphia&appid=449
 
 
 function getWeather() {
-var cityName = searchCity.value
-// console.log(cityName)
+var cityName = searchCity.value;
+console.log(searchCity.value);
 fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=44937540199d83cda6cdba6424273fb3&units=imperial`)
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
-    // console.log(data)
     currentCity.textContent = cityName
-    pastCity.textContent = cityName
     currentTemp.textContent = `${data.list[0].main.temp}`
     currentWind.textContent = `${data.list[0].wind.speed}`
     currentHumid.textContent = `${data.list[0].main.humidity}`
@@ -113,10 +166,11 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=4493
     fourthDayIcon.src = `https://openweathermap.org/img/wn/${data.list[30].weather[0].icon}.png`
     fifthDayIcon.src = `https://openweathermap.org/img/wn/${data.list[38].weather[0].icon}.png`
 })
+var citiesList = JSON.parse(localStorage.getItem("searchedCities")) || [];
+citiesList.push(searchCity.value);
+localStorage.setItem("searchedCities",JSON.stringify(citiesList));
 
-  var citiesList = [];
-  citiesList.push(searchCity.value);
-  console.log(citiesList);
+location.reload();
 };
 
 
@@ -124,4 +178,8 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=4493
 
 
 
+
 searchBtn.addEventListener("click", getWeather);
+
+
+init();
