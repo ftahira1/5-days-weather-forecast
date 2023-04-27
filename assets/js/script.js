@@ -53,6 +53,8 @@ if(cityList !== null) {
   for(var i = 0; i < cityList.length; i++) {
     var listEl = document.createElement("button");
     listEl.textContent = cityList[i];
+    listEl.setAttribute("class", "col-12 col-md-8");
+    listEl.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%")
     searchData.append(listEl);
     listEl.addEventListener("click", searchHistoryBtn);
   }
@@ -61,14 +63,21 @@ if(cityList !== null) {
 };
 
 function searchHistoryBtn () {
-  
+  console.log("test");
+  // for(var i = 0; i < listEl.length; i++) {
+  //   var cityName = listEl[0].textContent;
+  //   console.log(cityName)
+  // }
+  // var cityName = listEl.textContent;
 console.log(this.textContent);
 var cityName = (this.textContent);
+// (this).textContent
 fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=44937540199d83cda6cdba6424273fb3&units=imperial`)
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
+    // console.log(data)
     currentCity.textContent = cityName
     currentTemp.textContent = `${data.list[0].main.temp}`
     currentWind.textContent = `${data.list[0].wind.speed}`
@@ -99,9 +108,11 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=4493
 
 fetch("https://api.openweathermap.org/data/2.5/forecast?q=philadelphia&appid=44937540199d83cda6cdba6424273fb3&units=imperial")
   .then(function (answer) {
+    // console.log(answer)
     return answer.json(); 
   })
   .then(function (data) {
+    // console.log(data)
     currentTemp.textContent = `${data.list[0].main.temp}`
     currentWind.textContent = `${data.list[0].wind.speed}`
     currentHumid.textContent = `${data.list[0].main.humidity}`
@@ -133,14 +144,15 @@ fetch("https://api.openweathermap.org/data/2.5/forecast?q=philadelphia&appid=449
 
 
 function getWeather() {
-var cityName = searchCity.value;
+var nameCity = searchCity.value;
+console.log(nameCity)
 console.log(searchCity.value);
-fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=44937540199d83cda6cdba6424273fb3&units=imperial`)
+fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${nameCity}&appid=44937540199d83cda6cdba6424273fb3&units=imperial`)
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
-    currentCity.textContent = cityName
+    currentCity.textContent = nameCity
     currentTemp.textContent = `${data.list[0].main.temp}`
     currentWind.textContent = `${data.list[0].wind.speed}`
     currentHumid.textContent = `${data.list[0].main.humidity}`
@@ -170,7 +182,18 @@ var citiesList = JSON.parse(localStorage.getItem("searchedCities")) || [];
 citiesList.push(searchCity.value);
 localStorage.setItem("searchedCities",JSON.stringify(citiesList));
 
-location.reload();
+for(var i = 0; i < citiesList.length; i++) {
+  var citiesList = [];
+  citiesList.push(searchCity.value);
+  var list = document.createElement("button");
+  list.textContent = citiesList[i];
+  list.setAttribute("class", "col-12 col-md-8");
+  list.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%")
+  searchData.append(list);
+}
+  
+
+// location.reload();
 };
 
 
